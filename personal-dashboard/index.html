@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Dashboard</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ===== TOP BAR ===== -->
+  <header class="topbar">
+    <div class="greeting-block">
+      <p class="greeting-time" id="greeting"></p>
+      <h1 class="greeting-name" id="greetingName">Welcome!</h1>
+      <p class="datetime" id="datetime"></p>
+    </div>
+    <div class="topbar-actions">
+      <button class="btn-icon" id="themeToggle" title="Toggle dark/light mode" aria-label="Toggle theme">🌙</button>
+      <button class="btn-icon" id="editNameBtn" title="Set your name" aria-label="Edit name">✏️</button>
+    </div>
+  </header>
+
+  <!-- ===== NAME MODAL ===== -->
+  <div class="modal-overlay" id="nameModal" role="dialog" aria-modal="true" aria-labelledby="nameModalTitle">
+    <div class="modal">
+      <h2 id="nameModalTitle">What's your name?</h2>
+      <input type="text" id="nameInput" placeholder="Enter your name" maxlength="30" autocomplete="off" />
+      <div class="modal-actions">
+        <button class="btn-primary" id="saveNameBtn">Save</button>
+        <button class="btn-ghost" id="cancelNameBtn">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== MAIN GRID ===== -->
+  <main class="dashboard-grid">
+
+    <!-- FOCUS TIMER -->
+    <section class="card card--timer" aria-labelledby="timerHeading">
+      <div class="card-header">
+        <h2 id="timerHeading">⏱ Focus Timer</h2>
+        <button class="btn-icon" id="timerSettingsBtn" title="Change timer duration" aria-label="Timer settings">⚙️</button>
+      </div>
+
+      <div class="timer-display" role="timer" aria-live="polite" aria-atomic="true">
+        <span id="timerDisplay">25:00</span>
+      </div>
+
+      <div class="timer-label-row">
+        <span class="timer-label" id="timerLabel">Focus Session</span>
+      </div>
+
+      <div class="timer-controls">
+        <button class="btn-primary" id="timerStart">▶ Start</button>
+        <button class="btn-ghost"   id="timerStop" disabled>⏸ Pause</button>
+        <button class="btn-ghost"   id="timerReset">↺ Reset</button>
+      </div>
+
+      <!-- Timer settings panel (challenge: change Pomodoro time) -->
+      <div class="timer-settings" id="timerSettings" hidden>
+        <label for="timerMinutes">Session length (minutes):</label>
+        <input type="number" id="timerMinutes" min="1" max="120" value="25" />
+        <button class="btn-primary btn-sm" id="applyTimerBtn">Apply</button>
+      </div>
+    </section>
+
+    <!-- TO-DO LIST -->
+    <section class="card card--todo" aria-labelledby="todoHeading">
+      <div class="card-header">
+        <h2 id="todoHeading">✅ To-Do List</h2>
+        <span class="todo-count" id="todoCount">0 left</span>
+      </div>
+
+      <form class="todo-add-form" id="todoForm" autocomplete="off">
+        <input type="text" id="todoInput" placeholder="Add a new task…" maxlength="120" aria-label="New task" />
+        <button type="submit" class="btn-primary btn-sm">Add</button>
+      </form>
+
+      <ul class="todo-list" id="todoList" aria-label="Task list" role="list"></ul>
+    </section>
+
+    <!-- QUICK LINKS -->
+    <section class="card card--links" aria-labelledby="linksHeading">
+      <div class="card-header">
+        <h2 id="linksHeading">🔗 Quick Links</h2>
+        <button class="btn-icon" id="addLinkBtn" title="Add a link" aria-label="Add link">＋</button>
+      </div>
+
+      <div class="links-grid" id="linksGrid" role="list"></div>
+
+      <!-- Add / Edit link form -->
+      <div class="link-form" id="linkForm" hidden>
+        <input type="text"  id="linkName" placeholder="Label (e.g. Gmail)"   maxlength="30" aria-label="Link label" />
+        <input type="url"   id="linkUrl"  placeholder="https://example.com"  maxlength="200" aria-label="Link URL" />
+        <div class="link-form-actions">
+          <button class="btn-primary btn-sm" id="saveLinkBtn">Save</button>
+          <button class="btn-ghost   btn-sm" id="cancelLinkBtn">Cancel</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
